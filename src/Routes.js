@@ -10,7 +10,7 @@ route.get("/", async (req, res) => {
 route.post("/", async (req, res) => {
   const { nome, pontos } = req.body;
 
-  const pegaUsuario = await Usuario.find({ nome });
+  const pegaUsuario = await Usuario.find({ nome: nome });
 
   if (pegaUsuario) {
     const usuarioUpdate = await Usuario.findOneAndUpdate(
