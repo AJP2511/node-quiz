@@ -10,20 +10,12 @@ route.get("/", async (req, res) => {
 route.post("/", async (req, res) => {
   const { nome, pontos } = req.body;
 
-  const pegaUsuario = await Usuario.find({ nome: nome });
+  const user = await Usuario.create({
+    nome,
+    pontos,
+  });
 
-  if (pegaUsuario) {
-    const usuarioUpdate = await Usuario.findOneAndUpdate(
-      { nome: nome },
-      { pontos: pontos }
-    );
-  } else {
-    const user = await Usuario.create({
-      nome,
-      pontos,
-    });
-    return res.json(user);
-  }
+  return res.json(user);
 });
 
 module.exports = route;
