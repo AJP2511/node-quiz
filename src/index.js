@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://radioquiz.ajp2511.vercel.app/"
+    "https://radioquiz.ajp2511.vercel.app"
   );
   app.use(cors());
   next();
