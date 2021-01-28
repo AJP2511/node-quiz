@@ -2,7 +2,7 @@ const route = require("express").Router();
 const Usuario = require("./SchemaPlayer");
 
 route.get("/", async (req, res) => {
-  const user = await Usuario.find({ pontos: { $gt: 20 } }).sort({ pontos: -1 });
+  const user = await Usuario.find().sort({ pontos: -1 });
 
   return res.json(user);
 });
