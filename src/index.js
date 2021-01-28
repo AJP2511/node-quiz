@@ -14,6 +14,7 @@ mongoose.connect(process.env.MONGO_URL, {
 const corsOptions = {
   origin: "https://radioquiz.ajp2511.vercel.app/",
   optionsSuccessStatus: 200,
+  methods: "GET, POST",
 };
 
 app.use(urlencoded({ extended: true }));
