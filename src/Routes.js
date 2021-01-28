@@ -22,9 +22,8 @@ route.post("/", async (req, res) => {
       nome,
       pontos,
     });
+    return res.json(user);
   }
-
-  return res.json(user);
 });
 
 module.exports = route;
