@@ -1,6 +1,5 @@
 const route = require("express").Router();
 const Usuario = require("./SchemaPlayer");
-const cors = require("cors");
 
 route.get("/", async (req, res) => {
   const user = await Usuario.find({ pontos: { $gt: 40 } }).sort({
@@ -13,11 +12,15 @@ route.get("/", async (req, res) => {
 route.post("/", async (req, res) => {
   const { nome, pontos } = req.body;
 
-  const procuraUser = await Usuario.find({ nome: nome });
-
-  Usuario.deleteMany({ nome: procuraUser[0].nome }, (err) => {
+  const sameUsers = await Usuario.find({ nome: nome }, (err) => {
     if (err) console.log(err);
   });
+
+  if (sameUsers.length > 0) {
+    Usuario.deleteMany({ nome: sameUsers[0].nome }, (err) => {
+      if (err) console.log(err);
+    });
+  }
 
   const user = await Usuario.create({
     nome,
