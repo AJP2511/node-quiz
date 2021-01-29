@@ -1,21 +1,38 @@
 const route = require("express").Router();
 const Usuario = require("./SchemaPlayer");
+const cors = require("cors");
 
-route.get("/", async (req, res) => {
-  const user = await Usuario.find({ pontos: { $gt: 40 } }).sort({ pontos: -1 });
+route.get(
+  "/",
+  cors({
+    origin: "https://radioquiz.ajp2511.vercel.app",
+    optionsSuccessStatus: 200,
+  }),
+  async (req, res) => {
+    const user = await Usuario.find({ pontos: { $gt: 40 } }).sort({
+      pontos: -1,
+    });
 
-  return res.json(user);
-});
+    return res.json(user);
+  }
+);
 
-route.post("/", async (req, res) => {
-  const { nome, pontos } = req.body;
+route.post(
+  "/",
+  cors({
+    origin: "https://radioquiz.ajp2511.vercel.app/quiz",
+    optionsSuccessStatus: 200,
+  }),
+  async (req, res) => {
+    const { nome, pontos } = req.body;
 
-  const user = await Usuario.create({
-    nome,
-    pontos,
-  });
+    const user = await Usuario.create({
+      nome,
+      pontos,
+    });
 
-  return res.json(user);
-});
+    return res.json(user);
+  }
+);
 
 module.exports = route;
