@@ -13,7 +13,7 @@ route.get("/", cors(), async (req, res) => {
 route.post(
   "/",
   cors({
-    origin: "https://radioquiz.ajp2511.vercel.app/quiz",
+    origin: "https://radioquiz.ajp2511.vercel.app",
     optionsSuccessStatus: 200,
   }),
   async (req, res) => {
