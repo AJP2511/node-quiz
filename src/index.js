@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 app.use(
   cors({
-    origin: "https://radioquiz.ajp2511.vercel.app/",
+    origin: "https://radioquiz.ajp2511.vercel.app",
     optionsSuccessStatus: 200,
   })
 );
