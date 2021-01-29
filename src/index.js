@@ -5,7 +5,12 @@ const app = express();
 const routes = require("./Routes");
 const mongoose = require("mongoose");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "google.com",
+    optionsSuccessStatus: 200,
+  })
+);
 
 mongoose
   .connect(process.env.MONGO_URL || "mongodb://localhost:27017/quiz", {
