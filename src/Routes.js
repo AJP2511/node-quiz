@@ -13,6 +13,12 @@ route.get("/", async (req, res) => {
 route.post("/", async (req, res) => {
   const { nome, pontos } = req.body;
 
+  const procuraUser = await Usuario.find({ nome: nome });
+
+  Usuario.deleteMany({ nome: procuraUser[0].nome }, (err) => {
+    if (err) console.log(err);
+  });
+
   const user = await Usuario.create({
     nome,
     pontos,
